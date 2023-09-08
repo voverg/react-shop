@@ -1,0 +1,70 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --primary-color: #2F3035;
+  --secondary-color: #ffffff;
+  --primary-bg: #23e3ae;
+  --secondary-bg: #ebebeb;
+
+  --container-width: 900px;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+p {
+  margin: 0;
+}
+button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--primary-color);
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: 400;
+}
+
+.container {
+  position: relative;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.price {
+  padding-right: 30px;
+}
+.price::after {
+  content: ' ₽';
+}
