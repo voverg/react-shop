@@ -35,6 +35,7 @@ export class Api {
       description: item.displayDesctiption,
       price: item.price.regularPrice,
       img: item.displayAssets[0].full_background,
+      count: 1,
     };
   }
 

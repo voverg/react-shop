@@ -12,6 +12,7 @@ export function Main() {
   const [orders, setOrders] = useState([]);
 
   const api = new Api();
+    console.log('Orders', orders);
 
   const getGoods = () => {
     api.getGoods().then((data) => {
@@ -23,9 +24,22 @@ export function Main() {
     });
   }
 
-  const addOrder = (id) => {
-    const order = goods.filter((item) => item.id === id);
-    setOrders([...orders, order]);
+  const addOrder = (order) => {
+    // const order = goods.filter((item) => item.id === id)[0];
+    const orderIndex = orders.findIndex((item) => item.id === order.id);
+
+    if (orderIndex < 0) {
+      setOrders([...orders, order]);
+    } else {
+      const newOrders = orders.map((item) => {
+        if (item.id === order.id) {
+          return {...item, count: item.count + 1}
+        }
+
+        return item;
+      });
+      setOrders(newOrders);
+    }
   }
 
   useEffect(() => {
