@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Loader } from '../components/loader.jsx';
 import { Goods } from '../components/goods.jsx';
 import { Cart } from '../components/cart.jsx';
+import { Basket } from '../components/basket.jsx';
 
 import { Api } from '../services/api.js';
 
@@ -10,9 +11,9 @@ export function Main() {
   const [goods, setGoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState([]);
+  const [isBasketShow, setBasketShow] = useState(false);
 
   const api = new Api();
-    console.log('Orders', orders);
 
   const getGoods = () => {
     api.getGoods().then((data) => {
@@ -25,7 +26,6 @@ export function Main() {
   }
 
   const addOrder = (order) => {
-    // const order = goods.filter((item) => item.id === id)[0];
     const orderIndex = orders.findIndex((item) => item.id === order.id);
 
     if (orderIndex < 0) {
@@ -42,6 +42,15 @@ export function Main() {
     }
   }
 
+  const removeOrder = (id) => {
+    const newOrders = orders.filter((item) => item.id !== id);
+    setOrders(newOrders);
+  }
+
+  const handleBasketShow = (isShow) => {
+    setBasketShow(isShow);
+  }
+
   useEffect(() => {
     getGoods();
   }, []);
@@ -49,11 +58,21 @@ export function Main() {
   return (
     <main className="main">
       <div className="container">
-        <Cart count={orders.length} />
+        <Cart count={orders.length} handleBasketShow={handleBasketShow} />
+
         {loading
           ? <Loader />
           : <Goods goods={goods} addOrder={addOrder} />
         }
+
+        {isBasketShow &&
+          <Basket
+            orders={orders}
+            handleBasketShow={handleBasketShow}
+            removeOrder={removeOrder}
+          />
+        }
+        
       </div>
     </main>
   );
