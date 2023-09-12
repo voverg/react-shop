@@ -1,6 +1,6 @@
 import { BasketItem } from './basket-item.jsx';
 
-export function Basket({orders, handleBasketShow, removeOrder}) {
+export function Basket({orders, handleBasketShow, removeOrder, handleOrderCount}) {
   const totalPrice = orders.reduce((acc, item) => {
     return acc + item.price * item.count;
   }, 0);
@@ -21,6 +21,7 @@ export function Basket({orders, handleBasketShow, removeOrder}) {
                 return <BasketItem
                         key={item.id}
                         removeOrder={removeOrder}
+                        handleOrderCount={handleOrderCount}
                         {...item}
                       />
               })

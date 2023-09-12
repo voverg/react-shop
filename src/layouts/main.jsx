@@ -47,6 +47,18 @@ export function Main() {
     setOrders(newOrders);
   }
 
+  const handleOrderCount = (id, value) => {
+    const newOrders = orders.map((item) => {
+      if (id === item.id) {
+        return {...item, count: item.count + value};
+      }
+
+      return item;
+    }).filter((item) => item.count > 0);
+
+    setOrders(newOrders);
+  }
+
   const handleBasketShow = (isShow) => {
     setBasketShow(isShow);
   }
@@ -70,6 +82,7 @@ export function Main() {
             orders={orders}
             handleBasketShow={handleBasketShow}
             removeOrder={removeOrder}
+            handleOrderCount={handleOrderCount}
           />
         }
         

@@ -44,6 +44,7 @@ button {
   background-color: transparent;
   cursor: pointer;
   outline: none;
+  user-select: none;
 }
 
 body {
