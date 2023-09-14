@@ -225,6 +225,36 @@
   opacity: 0.7;
 }
 
+/*Alert*/
+.alert-container {
+  position: fixed;
+  top: 70px;
+  right: 10px;
+  min-width: 100px;
+  max-width:  500px;
+  z-index: 100;
+}
+.alert {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 14px;
+}
+.alert--active {
+  animation: activeAlert 0.3s ease-in-out;
+}
+@keyframes activeAlert {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 /*Loader*/
 .loader {
   top: 50%;
@@ -283,5 +313,9 @@
   }
   .basket__item-title {
     width: 100%;
+  }
+  .alert-container {
+    left: 10px;
+    right: 10px;
   }
 }

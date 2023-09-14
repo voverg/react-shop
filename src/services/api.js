@@ -1,3 +1,6 @@
+import { Helper } from './helper.js';
+
+
 export class Api {
   constructor() {
     this.baseURL = 'https://fortniteapi.io/v2/shop?lang=ru';
@@ -30,11 +33,11 @@ export class Api {
 
   createGoodsItem(item) {
     return {
-      id: item.mainId,
+      id: `${item.mainId}${Helper.random(1, 100)}`,
       title: item.displayName,
       description: item.displayDesctiption,
       price: item.price.regularPrice,
-      img: item.displayAssets[0].full_background,
+      img: item.displayAssets[0]?.full_background,
       count: 1,
     };
   }

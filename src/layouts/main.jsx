@@ -4,6 +4,7 @@ import { Loader } from '../components/loader.jsx';
 import { Goods } from '../components/goods.jsx';
 import { Cart } from '../components/cart.jsx';
 import { Basket } from '../components/basket.jsx';
+import { Alert } from '../components/alert.jsx';
 
 import { Api } from '../services/api.js';
 
@@ -12,6 +13,7 @@ export function Main() {
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState([]);
   const [isBasketShow, setBasketShow] = useState(false);
+  const [alerts, setAlerts] = useState([]);
 
   const api = new Api();
 
@@ -40,6 +42,8 @@ export function Main() {
       });
       setOrders(newOrders);
     }
+    
+    setAlerts([...alerts, order.title]);
   }
 
   const removeOrder = (id) => {
@@ -61,6 +65,11 @@ export function Main() {
 
   const handleBasketShow = (isShow) => {
     setBasketShow(isShow);
+  }
+
+  const closeAlert = () => {
+    const newAlerts = alerts.slice(1);
+    setAlerts(newAlerts);
   }
 
   useEffect(() => {
@@ -85,6 +94,8 @@ export function Main() {
             handleOrderCount={handleOrderCount}
           />
         }
+
+        {alerts.length > 0 && <Alert alerts={alerts} closeAlert={closeAlert} />}
         
       </div>
     </main>
