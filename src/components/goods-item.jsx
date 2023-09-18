@@ -1,4 +1,8 @@
-export function GoodsItem({id, title, description, price, img, count, addOrder}) {
+import { useContext } from 'react';
+import { ShopContext } from '../store/context.jsx';
+
+export function GoodsItem({id, title, description, price, img, count}) {
+  const {addOrder} = useContext(ShopContext);
   // const goodsItemImgPath = poster === 'N/A' ? `https://placehold.co/300x400?text=${title}` : poster;
 
   return (

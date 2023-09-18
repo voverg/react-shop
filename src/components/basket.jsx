@@ -1,6 +1,10 @@
+import { useContext } from 'react';
+import { ShopContext } from '../store/context.jsx';
+
 import { BasketItem } from './basket-item.jsx';
 
-export function Basket({orders, handleBasketShow, removeOrder, handleOrderCount}) {
+export function Basket() {
+  const {orders, handleBasketShow} = useContext(ShopContext);
   const totalPrice = orders.reduce((acc, item) => {
     return acc + item.price * item.count;
   }, 0);
@@ -20,8 +24,6 @@ export function Basket({orders, handleBasketShow, removeOrder, handleOrderCount}
             ? orders.map((item) => {
                 return <BasketItem
                         key={item.id}
-                        removeOrder={removeOrder}
-                        handleOrderCount={handleOrderCount}
                         {...item}
                       />
               })

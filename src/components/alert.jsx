@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useContext } from 'react';
+import { ShopContext } from '../store/context.jsx';
 import { Helper } from '../services/helper.js';
 
-export function Alert({alerts, closeAlert}) {
+export function Alert() {
+  const {alerts, closeAlert} = useContext(ShopContext);
+
   useEffect(() => {
     const timerId = setTimeout(() => {
       closeAlert();

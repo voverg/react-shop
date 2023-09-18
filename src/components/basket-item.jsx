@@ -1,4 +1,9 @@
-export function BasketItem({id, title, price, count, removeOrder, handleOrderCount}) {
+import { useContext } from 'react';
+import { ShopContext } from '../store/context.jsx';
+
+export function BasketItem({id, title, price, count}) {
+  const {removeOrder, handleOrderCount} = useContext(ShopContext);
+
   return (
     <li className="basket__item">
       <p className="basket__item-title">{title}</p>
